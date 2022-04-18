@@ -153,12 +153,13 @@ def predict_from_naive_bayes_model(model, matrix):
     # false_total_score = false_sum_log[:, 0] - false_sum_log[:, 1]
     # # return (total_score > 0).astype(int)
 
-    log_voc_mat_0 = np.log(1 + vocab[0] * matrix)
+    log_voc_mat_0 = np.ma.log(vocab[0] * matrix)
     sum_log_0 = np.sum(log_voc_mat_0, axis=1)
-    log_voc_mat_1 = np.log(1 + vocab[1] * matrix)
+    log_voc_mat_1 = np.ma.log(vocab[1] * matrix)
     sum_log_1 = np.sum(log_voc_mat_1, axis=1)
-    total_score = sum_log_1 * clazz[1] - sum_log_0 * clazz[0]
-    return (total_score > 0).astype(int)
+    log_clazz = np.log(clazz)
+    total_score = (sum_log_1 + log_clazz[1]) - (sum_log_0 + log_clazz[0])
+    return np.array((total_score > 0).astype(int))
     # *** КОНЕЦ ВАШЕГО КОДА ***
 
 
