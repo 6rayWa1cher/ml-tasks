@@ -222,11 +222,11 @@ def main():
 
     print('Размер словаря: ', len(dictionary))
 
-    util.write_json('spam_dictionary', dictionary)
+    util.write_json('stats/spam_dictionary', dictionary)
 
     train_matrix = transform_text(train_messages, dictionary)
 
-    np.savetxt('spam_sample_train_matrix', train_matrix[:100, :])
+    np.savetxt('stats/spam_sample_train_matrix', train_matrix[:100, :])
 
     val_matrix = transform_text(val_messages, dictionary)
     test_matrix = transform_text(test_messages, dictionary)
@@ -235,7 +235,7 @@ def main():
 
     naive_bayes_predictions = predict_from_naive_bayes_model(naive_bayes_model, test_matrix)
 
-    np.savetxt('spam_naive_bayes_predictions', naive_bayes_predictions)
+    np.savetxt('stats/spam_naive_bayes_predictions', naive_bayes_predictions)
 
     naive_bayes_accuracy = np.mean(naive_bayes_predictions == test_labels)
 
@@ -245,11 +245,11 @@ def main():
 
     print('Пять наиболее характерных для спама слов: ', top_5_words)
 
-    util.write_json('spam_top_indicative_words', top_5_words)
+    util.write_json('stats/spam_top_indicative_words', top_5_words)
 
     optimal_radius = compute_best_svm_radius(train_matrix, train_labels, val_matrix, val_labels, [0.01, 0.1, 1, 10])
 
-    util.write_json('spam_optimal_radius', optimal_radius)
+    util.write_json('stats/spam_optimal_radius', optimal_radius)
 
     print('Оптимальное значение SVM-радиуса {}'.format(optimal_radius))
 
