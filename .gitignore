@@ -239,5 +239,4 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-stats/*
 !stats/.keep
