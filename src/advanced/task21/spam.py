@@ -153,6 +153,7 @@ def predict_from_naive_bayes_model(model, matrix):
     # false_total_score = false_sum_log[:, 0] - false_sum_log[:, 1]
     # # return (total_score > 0).astype(int)
 
+    # https://nlp.stanford.edu/IR-book/html/htmledition/naive-bayes-text-classification-1.html
     log_voc_mat_0 = np.ma.log(vocab[0] * matrix)
     sum_log_0 = np.sum(log_voc_mat_0, axis=1)
     log_voc_mat_1 = np.ma.log(vocab[1] * matrix)
