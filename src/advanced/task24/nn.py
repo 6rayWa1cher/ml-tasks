@@ -312,7 +312,10 @@ def run_train_test(name, all_data, all_labels, backward_prop_func, num_epochs, p
         ax2.set_ylabel('accuracy')
         ax2.legend()
 
-        fig.savefig('./' + name + '.pdf')
+        fig.savefig('./stats/task24/' + name + '.pdf')
+
+        for param_name in ['W1', 'b1', 'W2', 'b2']:
+            np.savetxt('stats/task24/{}_{}'.format(name, param_name), params[param_name])
 
     accuracy = nn_test(all_data['test'], all_labels['test'], params)
     print('Для модели %s получена точность: %f' % (name, accuracy))
@@ -359,8 +362,8 @@ def main(plot=True):
         'test': test_labels,
     }
 
-    baseline_acc = run_train_test('stats/task24/baseline', all_data, all_labels, backward_prop, args.num_epochs, plot)
-    reg_acc = run_train_test('stats/task24/regularized', all_data, all_labels,
+    baseline_acc = run_train_test('baseline', all_data, all_labels, backward_prop, args.num_epochs, plot)
+    reg_acc = run_train_test('regularized', all_data, all_labels,
                              lambda a, b, c, d: backward_prop_regularized(a, b, c, d, reg=0.0001),
                              args.num_epochs, plot)
 
