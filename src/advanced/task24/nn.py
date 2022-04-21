@@ -314,7 +314,7 @@ def run_train_test(name, all_data, all_labels, backward_prop_func, num_epochs, p
 
         fig.savefig('./stats/task24/' + name + '.pdf')
 
-        for param_name in ['W1', 'b1', 'W2', 'b2']:
+        for param_name in 'W1', 'b1', 'W2', 'b2':
             np.savetxt('stats/task24/{}_{}'.format(name, param_name), params[param_name])
 
     accuracy = nn_test(all_data['test'], all_labels['test'], params)
