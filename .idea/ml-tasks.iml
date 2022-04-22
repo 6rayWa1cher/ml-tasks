@@ -3,8 +3,11 @@
   <component name="NewModuleRootManager">
     <content url="file://$USER_HOME$/Downloads/files02" />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/notebooks" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/data" />
       <excludeFolder url="file://$MODULE_DIR$/stats" />
+      <excludeFolder url="file://$MODULE_DIR$/octave" />
     </content>
     <orderEntry type="jdk" jdkName="Pipenv (ml-tasks)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
